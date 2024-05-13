@@ -1,0 +1,58 @@
+{
+    "information": {
+        "limit": 150,
+        "offset": 0,
+        "orderBy": [
+            {
+                "field": "datefrom",
+                "order": "asc"
+            },
+            {
+                "field": "refB1f64c35",
+                "order": "asc"
+            },
+            {
+                "field": "kalenderResId",
+                "order": "asc"
+            }
+        ]
+    },
+    "data": [
+        {
+            "dateto": "2024-06-28T13:00:00Z",
+            "datefrom": "2024-04-21T22:00:00Z",
+            "titelkalendereintrag": "swantje.moelle",
+            "kalenderId": "D6CD29582FEB8A012E967FDFDCF2C313880328FD",
+            "kalenderResId": "321D1F878AAAFD4D7FA31C13928CCF2CD47D92CC",
+            "parentId": "D6CD29582FEB8A012E967FDFDCF2C313880328FD",
+            "refB1f64c35": "A7678A054409E16DEABB0DFD64597A69F96E48F5"
+        },
+        {
+            "dateto": "2024-05-31T10:00:00Z",
+            "datefrom": "2024-05-02T04:00:00Z",
+            "titelkalendereintrag": "Frank.Evers",
+            "kalenderId": "3DB0E2BD156BAD20B6DE33A4C5C2A71340D9E35B",
+            "kalenderResId": "269A40F9B01DA6440622AF359CF3D6168E743BFA",
+            "parentId": "3DB0E2BD156BAD20B6DE33A4C5C2A71340D9E35B",
+            "refB1f64c35": "AB54E5DBF98E243DC940B11141C5B5B6C28497D6"
+        },
+        {
+            "dateto": "2024-07-19T04:30:00Z",
+            "datefrom": "2024-05-06T05:00:00Z",
+            "titelkalendereintrag": "Handan.Dinger",
+            "kalenderId": "E7F95B676D84C42B6378BC87BC3BE634A3CD5D7D",
+            "kalenderResId": "256E4CBDFA04F9937783C16465FC6234DA64D0A8",
+            "parentId": "E7F95B676D84C42B6378BC87BC3BE634A3CD5D7D",
+            "refB1f64c35": "0AA30BFE9DFF2740AB970CCD9BA09A95AF3030D1"
+        },
+        {
+            "dateto": "2024-05-10T22:00:00Z",
+            "datefrom": "2024-05-08T22:00:00Z",
+            "titelkalendereintrag": "michel.greve",
+            "kalenderId": "5DDF75395F3BB56D108825B5B4F076E2F6A005AA",
+            "kalenderResId": "CC73D0A48DB7DF8FBF6ADCEA786E1ABBB69CB97F",
+            "parentId": "5DDF75395F3BB56D108825B5B4F076E2F6A005AA",
+            "refB1f64c35": "EE0729F2BA169AB6E363C532FF4F4A6D8C1F652E"
+        }
+    ]
+}
