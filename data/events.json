@@ -1,0 +1,49 @@
+{
+    "information": {
+        "limit": 150,
+        "offset": 0,
+        "orderBy": [
+            {
+                "field": "datefrom",
+                "order": "asc"
+            },
+            {
+                "field": "refB1f64c35",
+                "order": "asc"
+            },
+            {
+                "field": "kalenderResId",
+                "order": "asc"
+            }
+        ]
+    },
+    "data": [
+        {
+            "dateto": "2024-05-17T13:40:00Z",
+            "datefrom": "2024-05-17T12:20:00Z",
+            "titelkalendereintrag": "Handan.Dinger",
+            "kalenderId": "E7F95B676D84C42B6378BC87BC3BE634A3CD5D7D",
+            "kalenderResId": "256E4CBDFA04F9937783C16465FC6234DA64D0A8",
+            "parentId": "E7F95B676D84C42B6378BC87BC3BE634A3CD5D7D",
+            "refB1f64c35": "0AA30BFE9DFF2740AB970CCD9BA09A95AF3030D1"
+        },
+        {
+            "dateto": "2024-09-17T11:30:00Z",
+            "datefrom": "2024-05-17T10:15:00Z",
+            "titelkalendereintrag": "Jeffrey.Ladendorf",
+            "kalenderId": "2909A1C51D13B8FC424491F353F2DB02083F6325",
+            "kalenderResId": "C581564616EAEBFC5EFE53825BDD6E5B21FFABE5",
+            "parentId": "2909A1C51D13B8FC424491F353F2DB02083F6325",
+            "refB1f64c35": "33AF4195A45F4F0D7EE7855BE87112C83E82443D"
+        },
+        {
+            "dateto": "2024-05-17T12:00:00Z",
+            "datefrom": "2024-05-17T10:00:00Z",
+            "titelkalendereintrag": "Cedric.Mueller",
+            "kalenderId": "83A58C83C475C60938BFEE0080D21F5370C038DB",
+            "kalenderResId": "B56B33764DEA1265EF699321D4256C40A11DD4B7",
+            "parentId": "83A58C83C475C60938BFEE0080D21F5370C038DB",
+            "refB1f64c35": "B6F8D4D420F5F9AA3FDE40CC94020F66DD5147C0"
+        }
+    ]
+}
