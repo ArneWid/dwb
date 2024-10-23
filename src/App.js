@@ -19,6 +19,7 @@ function App() {
             'X-API-KEY': 'ixa_FRQn7NvqsgnDbFeqQMbRQVL8pZCtTWP6uug899',
             'Content-Type': 'application/json'
           },
+          mode: 'cors'
         });
         if (!response.ok) {
           
@@ -44,6 +45,7 @@ function App() {
             'X-API-KEY': 'ixa_FRQn7NvqsgnDbFeqQMbRQVL8pZCtTWP6uug899',
             'Content-Type': 'application/json'
           },
+          mode: 'cors'
         });
         if (!response.ok) {
           throw new Error('Netzwerkantwort war nicht ok');
