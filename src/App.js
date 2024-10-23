@@ -10,28 +10,42 @@ function App() {
   const [currentTime, setCurrentTime] = useState(new Date());
 
   useEffect(() => {
+    // Lade die Ressourcen
     const loadResources = async () => {
       try {
-        const response = await fetch('https://portal.kreis-rd.local/api/app/8F6FD6987CA7968D9D3334EC221BA3671F4D7D02/Ressources', {
-          headers: { 'X-API-KEY': 'ixa_FRQn7NvqsgnDbFeqQMbRQVL8pZCtTWP6uug899' },
-          mode: 'no-cors'
+       const response = await fetch('https://portal.kreis-rd.local/api/app/8F6FD6987CA7968D9D3334EC221BA3671F4D7D02/Ressources', {
+          headers: {
+            'X-API-KEY': 'ixa_FRQn7NvqsgnDbFeqQMbRQVL8pZCtTWP6uug899',
+            'Content-Type': 'application/json'
+          },
         });
-        if (!response.ok) throw new Error('Netzwerkantwort war nicht ok');
+        if (!response.ok) {
+          
+          throw new Error('Netzwerkantwort war nicht ok');
+        }
         const data = await response.json();
-        const formattedResources = data.data.map(resource => ({ id: resource.id, title: resource.title }));
+        const formattedResources = data.data.map(resource => ({
+          id: resource.id,
+          title: resource.title
+        }));
         setResources(formattedResources);
       } catch (error) {
         console.error('Fehler beim Laden der Ressourcen:', error);
       }
     };
 
+    // Lade die Events
     const loadEvents = async () => {
       try {
-        const response = await fetch('https://portal.kreis-rd.local/api/app/8F6FD6987CA7968D9D3334EC221BA3671F4D7D02/Events', {
-          headers: { 'X-API-KEY': 'ixa_FRQn7NvqsgnDbFeqQMbRQVL8pZCtTWP6uug899' },
-          mode: 'no-cors'
+       const response = await fetch('https://portal.kreis-rd.local/api/app/8F6FD6987CA7968D9D3334EC221BA3671F4D7D02/Events', {
+          headers: {
+            'X-API-KEY': 'ixa_FRQn7NvqsgnDbFeqQMbRQVL8pZCtTWP6uug899',
+            'Content-Type': 'application/json'
+          },
         });
-        if (!response.ok) throw new Error('Netzwerkantwort war nicht ok');
+        if (!response.ok) {
+          throw new Error('Netzwerkantwort war nicht ok');
+        }
         const data = await response.json();
         const formattedEvents = data.data.map(event => ({
           title: event.titelkalendereintrag,
@@ -45,6 +59,9 @@ function App() {
       }
     };
 
+    loadResources();
+    loadEvents();
+
     const updateTimes = () => {
       const now = new Date();
       const { hours, minutes } = getPreviousHour(now);
@@ -53,82 +70,87 @@ function App() {
       const endTime = new Date(minTimeDate.getTime() + 3 * 60 * 60 * 1000); // +3 Stunden
       const maxTime = formatTime(endTime.getHours(), endTime.getMinutes());
       setCalendarTimes({ minTime, maxTime });
-    };
+  };
 
-    loadResources();
-    loadEvents();
     updateTimes(); // Initial setzen der Zeiten
-
-    const intervalId = setInterval(() => {
-      updateTimes();
-      setCurrentTime(new Date());
-    }, 30 * 1000); // Aktualisiert alle 30 Sek
+    const intervalId = setInterval(updateTimes, 1 * 30 * 1000); // Aktualisiert alle 1 Minute
 
     return () => clearInterval(intervalId); // Cleanup der Interval
   }, []);
 
   useEffect(() => {
-    hideLicenseMessage();
-  }, [resources, events]);
+    hideLicenseMessage()
+    const updateCurrentTime = () => {
+      setCurrentTime(new Date());
+    };
+
+    const timeIntervalId = setInterval(updateCurrentTime, 60 * 1000); // Aktualisiert die Uhrzeit jede Minute
+
+    return () => clearInterval(timeIntervalId); // Cleanup der Interval
+  }, []);
+
+  function formatTime(hours, minutes) {
+    return `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:00`;
+  }
+
+  function getPreviousHour(date) {
+    let hours = date.getHours();
+    return { hours, minutes: 0 }; // Setze Minuten immer auf 0
+}
 
   if (!calendarTimes.minTime || !calendarTimes.maxTime) {
     return <div>Loading...</div>;
   }
 
-  return (
-    <div className="App">
-      <header className="App-header">
-        <div style={{ width: '95%', textAlign: 'center' }}>
-          <h3 style={{ marginBottom: '10px', marginTop: '0px' }}>{formatDate(currentTime)}</h3>
-        </div>
-        <div style={{ width: '99%' }}>
-          <FullCalendar
-            plugins={[resourceTimelinePlugin]}
-            initialView="resourceTimelineDay"
-            timeZone="UTC"
-            now={currentTime.toISOString()}
-            resources={resources}
-            events={events}
-            nowIndicator={true}
-            slotMinTime={calendarTimes.minTime}
-            slotMaxTime={calendarTimes.maxTime}
-            slotDuration={'00:30:00'}
-            slotLabelFormat={{ hour: '2-digit', minute: '2-digit', hour12: false }}
-            headerToolbar={false}
-            resourceAreaWidth={'250px'}
-            contentHeight={'auto'}
-            resourceOrder='title'
-          />
-        </div>
-      </header>
-    </div>
-  );
+  const formatDate = (date) => {
+    return date.toLocaleString('de-DE', {
+      weekday: 'long',
+      month: 'long',
+      day: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit'
+    });
+  };
+
+  function hideLicenseMessage() {
+    var licenseMessageDivs = document.getElementsByClassName("fc-license-message");
+    for (var i = 0; i < licenseMessageDivs.length; i++) {
+        licenseMessageDivs[i].style.display = "none";
+    }
 }
 
-function formatTime(hours, minutes) {
-  return `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:00`;
+return (
+  <div className="App">
+    <header className="App-header">
+      <div style={{ width: '95%', textAlign: 'center' }}>
+        <h3 style={{ marginBottom: '10px', marginTop: '0px' }}>{formatDate(currentTime)}</h3>
+      </div>
+      <div style={{ width: '99%' }}>
+        <FullCalendar
+          plugins={[resourceTimelinePlugin]}
+          initialView="resourceTimelineDay"
+          timeZone="UTC"  // Sicherstellen, dass die Zeitzone korrekt ist
+          now={currentTime.toISOString()} // Manuell die aktuelle Zeit setzen
+          resources={resources}
+          events={events}
+          nowIndicator={true}
+          slotMinTime={calendarTimes.minTime}
+          slotMaxTime={calendarTimes.maxTime}
+          slotDuration={'00:30:00'}
+          slotLabelFormat={{
+            hour: '2-digit',
+            minute: '2-digit',
+            hour12: false
+          }}
+          headerToolbar={false}
+          resourceAreaWidth={'250px'}
+          contentHeight={'auto'}
+          resourceOrder='title'
+        />
+      </div>
+    </header>
+  </div>
+);
 }
-
-function getPreviousHour(date) {
-  let hours = date.getHours();
-  return { hours, minutes: 0 }; // Setze Minuten immer auf 0
-}
-
-function hideLicenseMessage() {
-  var licenseMessageDivs = document.getElementsByClassName("fc-license-message");
-  for (var i = 0; i < licenseMessageDivs.length; i++) {
-    licenseMessageDivs[i].style.display = "none";
-  }
-}
-
-const formatDate = (date) => {
-  return date.toLocaleString('de-DE', {
-    weekday: 'long',
-    month: 'long',
-    day: 'numeric',
-    hour: '2-digit',
-    minute: '2-digit'
-  });
-};
 
 export default App;
