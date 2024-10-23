@@ -14,6 +14,7 @@ function App() {
     const loadResources = async () => {
       try {
        const response = await fetch('https://portal.kreis-rd.local/api/app/8F6FD6987CA7968D9D3334EC221BA3671F4D7D02/Ressources', {
+          method: 'GET',
           headers: {
             'X-API-KEY': 'ixa_FRQn7NvqsgnDbFeqQMbRQVL8pZCtTWP6uug899',
             'Content-Type': 'application/json'
@@ -38,6 +39,7 @@ function App() {
     const loadEvents = async () => {
       try {
        const response = await fetch('https://portal.kreis-rd.local/api/app/8F6FD6987CA7968D9D3334EC221BA3671F4D7D02/Events', {
+          method: 'GET',
           headers: {
             'X-API-KEY': 'ixa_FRQn7NvqsgnDbFeqQMbRQVL8pZCtTWP6uug899',
             'Content-Type': 'application/json'
