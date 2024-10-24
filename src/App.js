@@ -133,8 +133,8 @@ return (
         <FullCalendar
           plugins={[resourceTimelinePlugin]}
           initialView="resourceTimelineDay"
-          timeZone="UTC"  // Sicherstellen, dass die Zeitzone korrekt ist
-          now={currentTime.toISOString()} // Manuell die aktuelle Zeit setzen
+          timeZone="UTC"
+          now={currentTime.toISOString()}
           resources={resources}
           events={events}
           nowIndicator={true}
