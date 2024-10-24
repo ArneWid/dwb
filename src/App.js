@@ -53,10 +53,10 @@ function App() {
         const data = await response.json();
         const formattedEvents = data.data.map(event => ({
           title: event.titelkalendereintrag,
-          start: event.datefrom,
-          end: event.dateto,
+          start: new Date(event.datefrom).toLocaleString('de-DE', { timeZone: 'Europe/Berlin' }),
+          end: new Date(event.dateto).toLocaleString('de-DE', { timeZone: 'Europe/Berlin' }),
           resourceId: event.refB1f64c35
-        }));
+        }));      
         setEvents(formattedEvents);
       } catch (error) {
         console.error('Fehler beim Laden der Events:', error);
