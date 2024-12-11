@@ -140,7 +140,7 @@ function App() {
           <h3 style={{ marginBottom: '0px', marginTop: '0px' }}>{formatDate(currentTime)}</h3>
         </div>
 
-        <div style={{ margin: '0px' }}>
+        <div style={{ marginBottom: '3px', marginTop: '0px' }}>
         <button
           onClick={refreshData}
           style={{
