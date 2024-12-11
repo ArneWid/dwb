@@ -137,22 +137,29 @@ function App() {
     <div className="App">
       <header className="App-header">
         <div style={{ width: '95%', textAlign: 'center' }}>
-          <h3 style={{ marginBottom: '10px', marginTop: '0px' }}>{formatDate(currentTime)}</h3>
+          <h3 style={{ marginBottom: '0px', marginTop: '0px' }}>{formatDate(currentTime)}</h3>
         </div>
 
-        {/* Manueller Refresh-Button */}
-        <div>
-          <button onClick={refreshData} 
-            style={{      
+        <div style={{ margin: '0px' }}>
+        <button
+          onClick={refreshData}
+          style={{
             backgroundColor: '#3788d8',
             color: '#fff',
             border: 'none',
             borderRadius: '8px',
+            padding: '10px 20px',
             fontSize: '16px',
-            }}>
-            Aktualisieren
-          </button>
-        </div>
+            cursor: 'pointer',
+            boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+            transition: 'background-color 0.3s ease',
+          }}
+          onMouseOver={(e) => (e.target.style.backgroundColor = '#2a6fa9')}
+          onMouseOut={(e) => (e.target.style.backgroundColor = '#3788d8')}
+        >
+          Aktualisieren
+        </button>
+      </div>
 
         <div style={{ width: '99%' }}>
           <FullCalendar
