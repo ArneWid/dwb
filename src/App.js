@@ -141,8 +141,15 @@ function App() {
         </div>
 
         {/* Manueller Refresh-Button */}
-        <div style={{ margin: '10px' }}>
-          <button onClick={refreshData}>Aktualisieren</button>
+        <div>
+               <button onClick={refreshData} 
+     	style={{      
+        backgroundColor: '#3788d8',
+        color: '#fff',
+        border: 'none',
+        borderRadius: '8px',}}>
+    Aktualisieren
+  </button>
         </div>
 
         <div style={{ width: '99%' }}>
